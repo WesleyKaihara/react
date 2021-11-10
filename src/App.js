@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import Titulo from './Titulo';
+import Relogio from './Relogio'
+import { Alert } from 'antd';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Titulo cor="blue">Olá</Titulo>
+    <Relogio
+    dataHoraInicial={new Date('1989-05-12 12:00:00')}
+    />
+    <div className="App">
+    <Alert message="Success Text" type="success" />
+    <Alert message="Info Text" type="info" />
+    <Alert message="Warning Text" type="warning" />
+    <Alert message="Error Text" type="error" />
+    </div>
+    
     </div>
   );
 }
 
 export default App;
+
