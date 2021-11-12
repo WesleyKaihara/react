@@ -9,6 +9,8 @@ import Home from './pages/Home';
 import Tasks from './pages/Tasks';
 import About from './pages/About';
 import Hero from './pages/Hero'
+import Login from './pages/Login'
+import NotFound from './pages/NotFound'
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
@@ -30,13 +32,14 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/hero/:heroId" element={<Hero />} />
-          <Route path="/tasks" element={
-            <PrivateRoute>
-              <Tasks />
-            </PrivateRoute>
-          } />
-          
-
+          <Route path="/tasks"
+            element={
+              <PrivateRoute>
+                <Tasks />
+              </PrivateRoute>
+            } />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
 
