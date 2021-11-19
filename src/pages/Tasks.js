@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { Button, Col, Form, Input, Row } from 'antd';
+import { Button, Col, Form, Row } from 'antd';
 import fakeAuth from '../fake-auth';
 import axios from 'axios';
 import { useEffect, useState, useMemo } from 'react';
+import  InputText from '../components/InputText'
+import TaskItem from '../components/TaskItem'
 
 function Tasks() {
-    const [tasks, setTasks] = useState([]);    //Armazenamento de dados
+    const [tasks, setTasks] = useState([]);    //Armazenamento de dados e reage quando ocorre alguma mudança
     const [search, setSearch] = useState('');
     useEffect(() => {                            //dois argumentos função e lista de dependencias
         axios.get('https://jsonplaceholder.typicode.com/todos')
@@ -33,13 +35,8 @@ function Tasks() {
 
 
     const renderTask = (task) => {
-
         return (                                 //recebe os valores da Array
-            <tr key={task.id}>
-                <td align="center">{task.id}</td>
-                <td >{task.title}</td>
-                <td align="center">{task.completed ? 'Sim' : 'Não'}</td>
-            </tr>
+                <TaskItem task={task} key={task.id}/>
         )
     }
 
@@ -64,10 +61,9 @@ function Tasks() {
             <Row gutter={[24, 24]} justify="center">         {/*Barra de pesquisa da página com JSX*/}
                 <Col span="23">
                     <Form layout="vertical" >
-                        <Form.Item label="Busca de tarefas"
-                        help={"Pesquisando por:"+ search}>
-                            <Input placeholder="Buscar ..." onChange={handleSearch} />
-                        </Form.Item>
+                        <InputText label="Busca de tarefas" 
+                        placeholder="Buscar..." 
+                        onChange={handleSearch} help={"Buscando por :"+search}/>
                     </Form>
                 </Col>
             </Row>
@@ -82,7 +78,7 @@ function Tasks() {
                     </tr>
                 </thead>
                 <tbody>
-                    {tasksFilter.map(renderTask)}
+                    {tasksFilter.map(renderTask)}   {/*ARRAY.map retorna todos os dados formatados(com JSX)*/}
                 </tbody>
             </table>
 
